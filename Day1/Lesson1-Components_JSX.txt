@@ -1,0 +1,346 @@
+============================================================
+  React - Lesson 1: Components & JSX
+============================================================
+
+This is the most important React topic because
+everything in React is a component.
+
+------------------------------------------------------------
+  What is a Component?
+------------------------------------------------------------
+
+A component is simply a reusable piece of UI.
+
+Imagine you're building an e-commerce website.
+Instead of writing one huge HTML file, you divide it into small parts.
+
+  Amazon Website
+  -------------------------------------
+  Navbar
+  -------------------------------------
+  Search Bar
+  -------------------------------------
+  Categories
+  -------------------------------------
+  Product Card  Product Card  Product Card  Product Card
+  -------------------------------------
+  Footer
+  -------------------------------------
+
+Every section above is a Component:
+  - Navbar Component
+  - Search Component
+  - Product Component
+  - Footer Component
+
+Instead of writing everything in one file,
+React allows us to create separate files:
+
+  src
+   |
+   |-- Navbar.jsx
+   |-- Footer.jsx
+   |-- Product.jsx
+   |-- Home.jsx
+   |-- App.jsx
+
+Each file contains one component.
+
+------------------------------------------------------------
+  Why Components?
+------------------------------------------------------------
+
+Suppose Amazon has 500 Products.
+
+Without React — you might have to write:
+  <div class="product">Laptop</div>
+  <div class="product">Mobile</div>
+  <div class="product">Keyboard</div>
+  ...again and again.
+
+With React — create one component:
+  <Product />
+
+Use it:
+  <Product />
+  <Product />
+  <Product />
+  <Product />
+
+One code. Multiple uses.
+This is called Reusability.
+
+------------------------------------------------------------
+  Types of Components
+------------------------------------------------------------
+
+There are two types:
+  1. Class Components
+  2. Functional Components
+
+Earlier, React used Class Components.
+Nowadays, 99% of projects use Functional Components.
+
+For Java Full Stack → focus only on Functional Components.
+
+------------------------------------------------------------
+  Functional Component
+------------------------------------------------------------
+
+A Functional Component is simply a JavaScript function
+that returns JSX.
+
+Example:
+  function Welcome() {
+      return <h1>Hello React</h1>;
+  }
+
+That's it. This is a React Component.
+
+Why does the function return "HTML"?
+→ It doesn't actually return HTML. It returns JSX.
+
+------------------------------------------------------------
+  What is JSX?
+------------------------------------------------------------
+
+JSX stands for JavaScript XML.
+It allows us to write <h1>Hello</h1> inside JavaScript.
+
+Without JSX:
+  const heading = React.createElement(
+      "h1",
+      null,
+      "Hello"
+  );
+
+With JSX:
+  <h1>Hello</h1>
+
+Much simpler.
+
+------------------------------------------------------------
+  JSX is NOT HTML
+------------------------------------------------------------
+
+Most beginners think:  JSX == HTML  ← WRONG.
+
+JSX looks like HTML but is actually JavaScript syntax.
+Before running, React converts JSX into JavaScript.
+
+Example:
+  You write:       <h1>Hello</h1>
+
+  React converts:  React.createElement("h1", null, "Hello");
+
+You don't need to write that yourself.
+
+------------------------------------------------------------
+  First React Component
+------------------------------------------------------------
+
+  function App() {
+      return (
+          <h1>Hello React</h1>
+      );
+  }
+
+  export default App;
+
+Breaking it down:
+
+  function App()       → Creates a component named App.
+  return               → Whatever you return is displayed on the browser.
+  <h1>Hello React</h1> → React displays: Hello React
+  export default App;  → Allows other files to use this component.
+
+------------------------------------------------------------
+  App Component
+------------------------------------------------------------
+
+Every React project starts from App.jsx.
+Think of it as the main entry point for your UI.
+
+  App
+   |
+   |-- Navbar
+   |
+   |-- Home
+   |
+   |-- Footer
+
+------------------------------------------------------------
+  Creating Multiple Components
+------------------------------------------------------------
+
+Navbar.jsx:
+  function Navbar() {
+      return (
+          <h2>Navbar</h2>
+      );
+  }
+  export default Navbar;
+
+Footer.jsx:
+  function Footer() {
+      return (
+          <h2>Footer</h2>
+      );
+  }
+  export default Footer;
+
+App.jsx:
+  import Navbar from "./Navbar";
+  import Footer from "./Footer";
+
+  function App() {
+      return (
+          <>
+              <Navbar />
+              <h1>Home Page</h1>
+              <Footer />
+          </>
+      );
+  }
+  export default App;
+
+Output:
+  Navbar
+  Home Page
+  Footer
+
+------------------------------------------------------------
+  What is <> </>?
+------------------------------------------------------------
+
+This is called a Fragment.
+React components must return ONE parent element.
+
+❌ Wrong:
+  return (
+      <h1>Hello</h1>
+      <p>React</p>
+  );
+  (Error: two top-level elements)
+
+✅ Correct (using div):
+  return (
+      <div>
+          <h1>Hello</h1>
+          <p>React</p>
+      </div>
+  );
+
+✅ Correct (using Fragment):
+  return (
+      <>
+          <h1>Hello</h1>
+          <p>React</p>
+      </>
+  );
+
+Fragments avoid creating an unnecessary <div> in the DOM.
+
+------------------------------------------------------------
+  Naming Rules
+------------------------------------------------------------
+
+Component names ALWAYS begin with a Capital Letter.
+
+  Correct:  function Student()
+  Wrong:    function student()
+
+React treats lowercase names as HTML tags.
+
+------------------------------------------------------------
+  Component Composition
+------------------------------------------------------------
+
+One component can use another:
+
+  App
+   |
+   |-- Navbar
+   |
+   |-- Hero
+   |
+   |-- ProductList
+   |      |
+   |      |-- Product
+   |      |-- Product
+   |      |-- Product
+   |
+   |-- Footer
+
+This is called Component Composition.
+
+------------------------------------------------------------
+  Real Java Full Stack Example
+------------------------------------------------------------
+
+We'll build this structure:
+
+  Student Management System
+  App
+   |
+   |-- Navbar
+   |-- StudentList
+   |-- AddStudentForm
+   |-- UpdateStudent
+   |-- Footer
+
+Later, StudentList will call the Spring Boot API to fetch students.
+
+------------------------------------------------------------
+  Common JSX Rules
+------------------------------------------------------------
+
+Rule 1: Use className instead of class
+  ❌  <div class="box">
+  ✅  <div className="box">
+  (Because 'class' is a reserved keyword in JavaScript)
+
+Rule 2: Close all tags
+  ❌  <img>
+  ✅  <img />
+
+Rule 3: JavaScript expressions inside {}
+  function App() {
+      let name = "Asiya";
+      return (
+          <h1>Hello {name}</h1>
+      );
+  }
+  Output: Hello Asiya
+
+  You can also put expressions:
+  <h1>{5 + 10}</h1>
+  Output: 15
+
+------------------------------------------------------------
+  Interview Questions
+------------------------------------------------------------
+
+1. What is React?
+   A JavaScript library for building user interfaces
+   using reusable components.
+
+2. What is a Component?
+   A reusable piece of UI that encapsulates structure and behavior.
+
+3. What is JSX?
+   A JavaScript syntax extension that lets us write HTML-like
+   code inside JavaScript. It is transpiled into
+   React.createElement() calls.
+
+4. Why use Components?
+   - Reusability
+   - Better organization
+   - Easier maintenance
+   - Improved readability
+
+5. Why should component names start with a capital letter?
+   React uses capitalized names to recognize custom components.
+   Lowercase names are treated as built-in HTML elements.
+
+============================================================

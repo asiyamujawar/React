@@ -1,0 +1,57 @@
+============================================================
+  Day 1 — Mini Task (Do It Yourself)
+============================================================
+
+Create the following components:
+
+  Navbar.jsx
+  Home.jsx
+  About.jsx
+  Footer.jsx
+
+Then compose them all in App.jsx so the output looks like:
+
+  ┌─────────────────────────────────┐
+  │             Navbar              │
+  ├─────────────────────────────────┤
+  │  Welcome to Student Management  │
+  │            System               │
+  ├─────────────────────────────────┤
+  │            About Us             │
+  ├─────────────────────────────────┤
+  │             Footer              │
+  └─────────────────────────────────┘
+
+------------------------------------------------------------
+  What to Practice
+------------------------------------------------------------
+
+✅ Create functional components
+✅ Use export default in each file
+✅ Import components into App.jsx
+✅ Use Fragment <> </> to wrap multiple components
+✅ Use className instead of class if you add any styling
+
+------------------------------------------------------------
+  Expected App.jsx Structure
+------------------------------------------------------------
+
+  import Navbar from "./Navbar";
+  import Home from "./Home";
+  import About from "./About";
+  import Footer from "./Footer";
+
+  function App() {
+      return (
+          <>
+              <Navbar />
+              <Home />
+              <About />
+              <Footer />
+          </>
+      );
+  }
+
+  export default App;
+
+============================================================
