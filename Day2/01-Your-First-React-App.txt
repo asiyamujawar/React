@@ -1,0 +1,170 @@
+============================================================
+  Day 2 — Your First React App
+============================================================
+
+------------------------------------------------------------
+  Modify the React App
+------------------------------------------------------------
+
+Inside your project, open:
+  src/App.jsx
+
+Default App.jsx content:
+
+  import { useState } from 'react'
+  import reactLogo from './assets/react.svg'
+  import viteLogo from './assets/vite.svg'
+  import heroImg from './assets/hero.png'
+  import './App.css'
+
+  function App() {
+    const [count, setCount] = useState(0)
+
+    return (
+      <>
+        <section id="center">
+          <div className="hero">
+            <img src={heroImg} className="base" width="170" height="179" alt="" />
+            <img src={reactLogo} className="framework" alt="React logo" />
+            <img src={viteLogo} className="vite" alt="Vite logo" />
+          </div>
+          <div>
+            <h1>Get started</h1>
+            <p>
+              Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            </p>
+          </div>
+          <button
+            type="button"
+            className="counter"
+            onClick={() => setCount((count) => count + 1)}
+          >
+            Count is {count}
+          </button>
+        </section>
+      </>
+    )
+  }
+
+  export default App
+
+Replace all of it with this:
+
+  function App() {
+    return (
+      <div className="App">
+        <h1>Hello World!</h1>
+      </div>
+    );
+  }
+
+  export default App;
+
+Save (Ctrl + S) — the browser updates automatically.
+
+------------------------------------------------------------
+  React Render HTML
+------------------------------------------------------------
+
+React renders HTML to the web page via a container
+and a function called createRoot().
+
+The Container:
+  React uses a <div id="root"></div> in index.html
+  as the container where everything is rendered.
+
+Default index.html (stripped to essentials):
+
+  <!doctype html>
+  <html lang="en">
+    <body>
+      <div id="root"></div>
+      <script type="module" src="/src/main.jsx"></script>
+    </body>
+  </html>
+
+------------------------------------------------------------
+  The createRoot Function
+------------------------------------------------------------
+
+Located in src/main.jsx.
+It defines which HTML element React should render into.
+
+Default main.jsx:
+
+  import { StrictMode } from 'react'
+  import { createRoot } from 'react-dom/client'
+  import './index.css'
+  import App from './App.jsx'
+
+  createRoot(document.getElementById('root')).render(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  )
+
+Simplified version:
+
+  import { createRoot } from 'react-dom/client'
+
+  createRoot(document.getElementById('root')).render(
+    <h1>Hello React!</h1>
+  )
+
+------------------------------------------------------------
+  The render Method
+------------------------------------------------------------
+
+render() defines what to display inside the container.
+The result appears inside <div id="root">.
+
+Example — render a paragraph:
+
+  import { createRoot } from 'react-dom/client'
+
+  createRoot(document.getElementById('root')).render(
+    <p>Welcome!</p>
+  )
+
+Note: The element id doesn't have to be "root",
+but "root" is the standard convention.
+
+------------------------------------------------------------
+  Rendering HTML (JSX variable)
+------------------------------------------------------------
+
+You can store JSX in a variable and render it:
+
+  import { createRoot } from 'react-dom/client'
+
+  const myelement = (
+    <table>
+      <tr><th>Name</th></tr>
+      <tr><td>John</td></tr>
+      <tr><td>Elsa</td></tr>
+    </table>
+  );
+
+  createRoot(document.getElementById('root')).render(
+    myelement
+  )
+
+------------------------------------------------------------
+  The Root Node
+------------------------------------------------------------
+
+The root node is where React displays its output.
+It does NOT have to be a <div> and the id can be anything.
+
+Example — using a <header> with a custom id:
+
+  index.html:
+    <header id="sandy"></header>
+    <script type="module" src="/src/main.jsx"></script>
+
+  main.jsx:
+    createRoot(document.getElementById('sandy')).render(
+      <h1>Hello!</h1>
+    )
+
+============================================================

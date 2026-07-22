@@ -1,0 +1,69 @@
+============================================================
+  Day 2 — React JSX Expressions
+============================================================
+
+JSX lets you embed JavaScript expressions directly in markup
+by wrapping them in curly braces { }.
+
+------------------------------------------------------------
+  Basic Expression
+------------------------------------------------------------
+
+  function Car() {
+    return (
+      <>
+        <h1>My car</h1>
+        <p>It has {218 * 1.36} horsepower</p>
+      </>
+    );
+  }
+
+------------------------------------------------------------
+  Variables
+------------------------------------------------------------
+
+  function Car() {
+    const hp = 218 * 1.36;
+    return (
+      <>
+        <h1>My car</h1>
+        <p>It has {hp} horsepower</p>
+      </>
+    );
+  }
+
+------------------------------------------------------------
+  Function Calls
+------------------------------------------------------------
+
+  function kwtohp(kw) {
+    return kw * 1.36;
+  }
+
+  function Car() {
+    return (
+      <>
+        <h1>My car</h1>
+        <p>It has {kwtohp(218)} horsepower</p>
+      </>
+    );
+  }
+
+------------------------------------------------------------
+  Object Properties
+------------------------------------------------------------
+
+  function Car() {
+    const myobj = {
+      name: "Fiat",
+      model: "500",
+      color: "white"
+    };
+    return (
+      <>
+        <h1>My car is a {myobj.color} {myobj.name} {myobj.model}</h1>
+      </>
+    );
+  }
+
+============================================================

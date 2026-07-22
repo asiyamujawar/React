@@ -1,0 +1,112 @@
+============================================================
+  Day 2 — React ES6: What is ES6?
+============================================================
+
+ES6 = ECMAScript 6 (also called ECMAScript 2015).
+ECMAScript standardizes JavaScript.
+ES6 was published in 2015.
+
+React uses ES6 — you need to know these key features:
+
+------------------------------------------------------------
+  1. Classes
+------------------------------------------------------------
+
+A blueprint for creating objects with properties and methods.
+
+  class Animal {
+    constructor(name) {
+      this.name = name;
+    }
+    speak() {
+      return `${this.name} makes a sound.`;
+    }
+  }
+
+------------------------------------------------------------
+  2. Arrow Functions
+------------------------------------------------------------
+
+Shorter syntax for writing functions.
+
+  // Regular
+  function add(a, b) { return a + b; }
+
+  // Arrow
+  const add = (a, b) => a + b;
+
+Also very common in React components:
+
+  const Navbar = () => {
+    return <h2>Navbar</h2>;
+  };
+
+------------------------------------------------------------
+  3. Variables — let, const, var
+------------------------------------------------------------
+
+  var    → function-scoped, avoid in modern code
+  let    → block-scoped, can be reassigned
+  const  → block-scoped, cannot be reassigned
+
+  const name = "Asiya";    // use for values that don't change
+  let count = 0;           // use for values that change
+
+------------------------------------------------------------
+  4. Array Methods — .map()
+------------------------------------------------------------
+
+Used heavily in React to render lists.
+
+  const names = ["Ali", "Sara", "John"];
+
+  const items = names.map((name) => <li>{name}</li>);
+
+------------------------------------------------------------
+  5. Destructuring
+------------------------------------------------------------
+
+Extract values from arrays or objects cleanly.
+
+  // Object destructuring
+  const { name, age } = student;
+
+  // Array destructuring
+  const [count, setCount] = useState(0);
+
+------------------------------------------------------------
+  6. Modules (import / export)
+------------------------------------------------------------
+
+Split code into separate files.
+
+  // Export
+  export default function Navbar() { ... }
+
+  // Import
+  import Navbar from "./Navbar";
+
+------------------------------------------------------------
+  7. Ternary Operator
+------------------------------------------------------------
+
+Short form of if/else, used a lot in JSX.
+
+  const label = age > 18 ? "Adult" : "Minor";
+
+  // In JSX
+  <p>{isLoggedIn ? "Welcome!" : "Please log in"}</p>
+
+------------------------------------------------------------
+  8. Spread Operator
+------------------------------------------------------------
+
+Copies or merges arrays and objects.
+
+  const arr1 = [1, 2, 3];
+  const arr2 = [...arr1, 4, 5];  // [1, 2, 3, 4, 5]
+
+  const obj1 = { name: "Ali" };
+  const obj2 = { ...obj1, age: 22 };  // { name: "Ali", age: 22 }
+
+============================================================

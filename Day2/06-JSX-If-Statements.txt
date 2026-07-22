@@ -1,0 +1,46 @@
+============================================================
+  Day 2 — React JSX If Statements
+============================================================
+
+React supports if statements, but NOT directly inside JSX.
+
+Two options:
+
+------------------------------------------------------------
+  Option 1: if statement outside JSX
+------------------------------------------------------------
+
+  function Fruit() {
+    const x = 5;
+    let y = "Apple";
+    if (x < 10) {
+      y = "Banana";
+    }
+
+    return (
+      <h1>{y}</h1>
+    );
+  }
+
+  Output: Banana
+
+------------------------------------------------------------
+  Option 2: Ternary Expression inside JSX
+------------------------------------------------------------
+
+  function Fruit() {
+    const x = 5;
+    return (
+      <h1>{x < 10 ? "Banana" : "Apple"}</h1>
+    );
+  }
+
+  Output: Banana
+
+Syntax:
+  condition ? value_if_true : value_if_false
+
+Use ternary when the condition is simple.
+Use if/else outside JSX when the logic is more complex.
+
+============================================================

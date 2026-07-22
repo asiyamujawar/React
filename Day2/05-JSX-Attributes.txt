@@ -1,0 +1,82 @@
+============================================================
+  Day 2 — React JSX Attributes
+============================================================
+
+------------------------------------------------------------
+  className Instead of class
+------------------------------------------------------------
+
+  ❌  <h1 class="myclass">Hello World</h1>
+  ✅  <h1 className="myclass">Hello World</h1>
+
+------------------------------------------------------------
+  Expressions as Attribute Values
+------------------------------------------------------------
+
+Use { } to pass a JavaScript variable as an attribute value.
+Do NOT use quotes — quotes make it a plain string, not an expression.
+
+  function Car() {
+    const x = "myclass";
+    return (
+      <h1 className={x}>Hello World</h1>
+    );
+  }
+
+------------------------------------------------------------
+  camelCase Event Attributes
+------------------------------------------------------------
+
+HTML:   onclick, onchange, onmouseover
+JSX:    onClick, onChange, onMouseOver
+
+  function Car() {
+    const myfunc = () => {
+      alert('Hello World');
+    };
+    return (
+      <button onClick={myfunc}>Click me</button>
+    );
+  }
+
+------------------------------------------------------------
+  Boolean Attributes
+------------------------------------------------------------
+
+No value = true:
+  <button disabled>Click me</button>
+
+Explicit true:
+  <button disabled={true}>Click me</button>
+
+Explicit false:
+  <button disabled={false}>Click me</button>
+
+------------------------------------------------------------
+  The style Attribute
+------------------------------------------------------------
+
+In JSX, style accepts a JavaScript object with camelCased properties.
+Not a CSS string like in HTML.
+
+  function Car() {
+    const mystyles = {
+      color: "red",
+      fontSize: "20px",
+      backgroundColor: "lightyellow",
+    };
+
+    return (
+      <>
+        <h1 style={mystyles}>My car</h1>
+      </>
+    );
+  }
+
+CSS property name differences:
+  HTML CSS          →  JSX (camelCase)
+  background-color  →  backgroundColor
+  font-size         →  fontSize
+  border-radius     →  borderRadius
+
+============================================================

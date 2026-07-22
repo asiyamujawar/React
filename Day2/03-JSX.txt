@@ -1,0 +1,126 @@
+============================================================
+  Day 2 — React JSX
+============================================================
+
+JSX = JavaScript XML
+JSX lets us write HTML inside JavaScript.
+React converts JSX into React.createElement() calls at runtime.
+
+------------------------------------------------------------
+  JSX vs Without JSX
+------------------------------------------------------------
+
+With JSX:
+  const myElement = <h1>I Love JSX!</h1>;
+
+Without JSX:
+  const myElement = React.createElement('h1', {}, 'I do not use JSX!');
+
+JSX is not required, but makes React much easier to write.
+
+------------------------------------------------------------
+  Expressions in JSX
+------------------------------------------------------------
+
+Any valid JavaScript expression goes inside { }.
+
+  const myElement = <h1>React is {5 + 5} times better with JSX</h1>;
+
+------------------------------------------------------------
+  Multi-line JSX
+------------------------------------------------------------
+
+Wrap multi-line HTML in parentheses:
+
+  const myElement = (
+    <ul>
+      <li>Apples</li>
+      <li>Bananas</li>
+      <li>Cherries</li>
+    </ul>
+  );
+
+------------------------------------------------------------
+  One Top Level Element
+------------------------------------------------------------
+
+All JSX must be wrapped in ONE parent element.
+
+❌ Wrong:
+  const myElement = (
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+  );
+
+✅ Correct (div):
+  const myElement = (
+    <div>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </div>
+  );
+
+✅ Correct (Fragment):
+  const myElement = (
+    <>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </>
+  );
+
+Fragments avoid adding extra <div> nodes to the DOM.
+
+------------------------------------------------------------
+  Tags Must Be Closed
+------------------------------------------------------------
+
+JSX follows XML rules — all tags must close.
+
+  ❌  <input type="text">
+  ✅  <input type="text" />
+
+------------------------------------------------------------
+  className Instead of class
+------------------------------------------------------------
+
+'class' is a reserved word in JavaScript.
+Use className in JSX instead.
+
+  ❌  <h1 class="myclass">Hello</h1>
+  ✅  <h1 className="myclass">Hello</h1>
+
+JSX automatically converts className → class in the DOM.
+
+------------------------------------------------------------
+  Comments in JSX
+------------------------------------------------------------
+
+  const myElement = <h1>Hello {/* Wonderful */} World</h1>;
+
+------------------------------------------------------------
+  JSX Inside Components
+------------------------------------------------------------
+
+  function Car() {
+    return (
+      <>
+        <h2>My Car</h2>
+        <p>It is a Ford Mustang.</p>
+      </>
+    );
+  }
+
+You can run logic before the return:
+
+  function Car() {
+    const brand = "Ford";
+    const model = "Mustang";
+    return (
+      <>
+        <h2>My Car</h2>
+        <p>It is a {brand} {model}.</p>
+      </>
+    );
+  }
+
+============================================================

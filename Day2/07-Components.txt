@@ -1,0 +1,132 @@
+============================================================
+  Day 2 — React Components
+============================================================
+
+Components are independent and reusable pieces of code
+that return HTML (JSX).
+Think of them like JavaScript functions that produce UI.
+
+Use Function components (not Class components) in modern React.
+
+------------------------------------------------------------
+  Creating a Component
+------------------------------------------------------------
+
+Component name MUST start with an uppercase letter.
+
+  function Car() {
+    return (
+      <h2>Hi, I am a Car!</h2>
+    );
+  }
+
+------------------------------------------------------------
+  Rendering a Component
+------------------------------------------------------------
+
+  createRoot(document.getElementById('root')).render(
+    <Car />
+  );
+
+------------------------------------------------------------
+  Props (Passing Arguments)
+------------------------------------------------------------
+
+Pass data into a component like HTML attributes.
+Inside the component, access them via the props object.
+
+  function Car(props) {
+    return (
+      <h2>I am a {props.color} Car!</h2>
+    );
+  }
+
+  createRoot(document.getElementById('root')).render(
+    <Car color="red" />
+  );
+
+  Output: I am a red Car!
+
+------------------------------------------------------------
+  Components Inside Components
+------------------------------------------------------------
+
+  function Car() {
+    return (
+      <h2>I am a Car!</h2>
+    );
+  }
+
+  function Garage() {
+    return (
+      <>
+        <h1>Who lives in my Garage?</h1>
+        <Car />
+      </>
+    );
+  }
+
+  createRoot(document.getElementById('root')).render(
+    <Garage />
+  );
+
+------------------------------------------------------------
+  Rendering a Component Multiple Times
+------------------------------------------------------------
+
+  function Car(props) {
+    return (
+      <h2>I am a {props.brand}!</h2>
+    );
+  }
+
+  function Garage() {
+    return (
+      <>
+        <h1>Who lives in my Garage?</h1>
+        <Car brand="Ford" />
+        <Car brand="BMW" />
+      </>
+    );
+  }
+
+  Output:
+    Who lives in my Garage?
+    I am a Ford!
+    I am a BMW!
+
+------------------------------------------------------------
+  Components in Separate Files
+------------------------------------------------------------
+
+Split components into their own files for cleaner code.
+File name must start with an uppercase letter.
+
+Vehicle.jsx:
+  function Car() {
+    return (
+      <h2>Hi, I am a Car!</h2>
+    );
+  }
+
+  export default Car;
+
+main.jsx:
+  import { createRoot } from 'react-dom/client'
+  import Car from './Vehicle.jsx';
+
+  createRoot(document.getElementById('root')).render(
+    <Car />
+  );
+
+------------------------------------------------------------
+  Quick Rules
+------------------------------------------------------------
+
+  ✅ Name starts with uppercase letter
+  ✅ Returns JSX (one parent element)
+  ✅ Use export default to share the component
+  ✅ Use import to use it in another file
+  ✅ Props pass data from parent to component
+
+============================================================
