@@ -356,6 +356,249 @@ function StudentHobbies() {
 }
 
 // ------------------------------------------------------------
+//  4. Favorite Fruit — Radio (the lesson's example)
+// ------------------------------------------------------------
+function FavoriteFruit() {
+  const [selectedFruit, setSelectedFruit] = useState('banana');
+
+  const handleChange = (event) => {
+    setSelectedFruit(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`🍎 Your favorite fruit is: ${selectedFruit}`);
+  };
+
+  const radioRow = { display: 'block', margin: '4px 0' };
+
+  return (
+    <div style={{
+      border: '1px solid #f39c12',
+      padding: '20px',
+      borderRadius: '8px'
+    }}>
+      <h3 style={{ color: '#f39c12', marginTop: 0 }}>
+        🍓 Favorite Fruit Radio Group
+      </h3>
+
+      <form onSubmit={handleSubmit}>
+        <p style={{ marginBottom: '8px', fontWeight: 'bold' }}>
+          Select your favorite fruit:
+        </p>
+
+        <label style={radioRow}>
+          <input
+            type="radio"
+            name="fruit"
+            value="apple"
+            checked={selectedFruit === 'apple'}
+            onChange={handleChange}
+          /> Apple
+        </label>
+
+        <label style={radioRow}>
+          <input
+            type="radio"
+            name="fruit"
+            value="banana"
+            checked={selectedFruit === 'banana'}
+            onChange={handleChange}
+          /> Banana
+          &nbsp;
+          <em style={{ color: '#666' }}>(pre-selected)</em>
+        </label>
+
+        <label style={radioRow}>
+          <input
+            type="radio"
+            name="fruit"
+            value="cherry"
+            checked={selectedFruit === 'cherry'}
+            onChange={handleChange}
+          /> Cherry
+        </label>
+
+        <button
+          type="submit"
+          style={{
+            marginTop: '12px',
+            padding: '7px 20px',
+            background: '#f39c12',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          Submit
+        </button>
+
+        <p style={{ fontStyle: 'italic', marginTop: '10px' }}>
+          Selected:&nbsp;
+          <strong style={{ color: '#f39c12' }}>{selectedFruit}</strong>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+// ------------------------------------------------------------
+//  5. JFS — Student Gender + Course Program (Radio Pattern B)
+// ------------------------------------------------------------
+function StudentFormRadio() {
+  // Pattern B: single object form state — text + radio + checkbox together!
+  const [form, setForm] = useState({
+    studentName: "",
+    gender: "F",          // Radio field: default = Female
+    program: "BT-CSE",    // Radio field (program choice)
+    active: true          // Checkbox field: Active status
+  });
+
+  // ★ Universal Pattern B handleChange works for TEXT + RADIO + CHECKBOX together!
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(
+      "✅ Submitting to Spring Boot /api/students:\n" +
+      JSON.stringify(form, null, 2)
+    );
+  };
+
+  const programs = [
+    { id: "BT-CSE", name: "B.Tech Computer Science" },
+    { id: "BT-IT",  name: "B.Tech Information Technology" },
+    { id: "BT-ECE", name: "B.Tech Electronics" },
+    { id: "BCA",    name: "Bachelor of Computer Applications" }
+  ];
+
+  const labelRow = { display: 'block', margin: '5px 0' };
+
+  return (
+    <div style={{
+      border: '1px solid #2980b9',
+      padding: '20px',
+      borderRadius: '8px',
+      marginTop: '15px'
+    }}>
+      <h3 style={{ color: '#2980b9', marginTop: 0 }}>
+        🎓 JFS — Student Form (Text + Radios + Checkbox, Pattern B)
+      </h3>
+
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <label>
+          <strong>Student Name:</strong><br />
+          <input
+            type="text"
+            name="studentName"
+            value={form.studentName}
+            onChange={handleChange}
+            placeholder="Full name"
+            style={{ padding: '6px 8px', minWidth: '280px', marginTop: '4px' }}
+            required
+          />
+        </label>
+
+        <fieldset style={{ border: '1px solid #bbb', padding: '10px 15px' }}>
+          <legend><strong>Gender (pick exactly one):</strong></legend>
+          <label style={labelRow}>
+            <input
+              type="radio"
+              name="gender"
+              value="M"
+              checked={form.gender === 'M'}
+              onChange={handleChange}
+            /> Male
+          </label>
+          <label style={labelRow}>
+            <input
+              type="radio"
+              name="gender"
+              value="F"
+              checked={form.gender === 'F'}
+              onChange={handleChange}
+            /> Female
+            &nbsp;
+            <em style={{ color: '#666' }}>(default)</em>
+          </label>
+          <label style={labelRow}>
+            <input
+              type="radio"
+              name="gender"
+              value="O"
+              checked={form.gender === 'O'}
+              onChange={handleChange}
+            /> Other
+          </label>
+        </fieldset>
+
+        <fieldset style={{ border: '1px solid #bbb', padding: '10px 15px' }}>
+          <legend><strong>Program (dynamic from .map — like API data):</strong></legend>
+          {programs.map(p => (
+            <label key={p.id} style={labelRow}>
+              <input
+                type="radio"
+                name="program"
+                value={p.id}
+                checked={form.program === p.id}
+                onChange={handleChange}
+              /> &nbsp; {p.name}
+            </label>
+          ))}
+        </fieldset>
+
+        <label style={{ padding: '8px', background: '#f8f9fa', borderRadius: '4px' }}>
+          <input
+            type="checkbox"
+            name="active"
+            checked={form.active}
+            onChange={handleChange}
+          />
+          &nbsp; Student is currently <strong>Active</strong>
+        </label>
+
+        <button
+          type="submit"
+          style={{
+            alignSelf: 'flex-start',
+            padding: '8px 24px',
+            background: '#2980b9',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }}
+        >
+          💾 Save Student
+        </button>
+      </form>
+
+      <div style={{
+        marginTop: '15px',
+        padding: '10px 14px',
+        background: '#eaf2f8',
+        border: '1px solid #a9cce3',
+        borderRadius: '4px'
+      }}>
+        <strong>Live form state (Pattern B — one handleChange for everything!):</strong>
+        <pre style={{ margin: '6px 0 0' }}>{JSON.stringify(form, null, 2)}</pre>
+      </div>
+
+      <p style={{ fontStyle: 'italic', marginTop: '12px' }}>
+        💡 Single universal <code>handleChange</code> works for text, both radio groups, AND checkbox!
+      </p>
+    </div>
+  );
+}
+
+// ------------------------------------------------------------
 //  Main App Component — Day 4 Examples
 // ------------------------------------------------------------
 export default function Day4Examples() {
@@ -379,6 +622,18 @@ export default function Day4Examples() {
       <section>
         <h2>3. JFS — Multiple Hobbies (Nested Object)</h2>
         <StudentHobbies />
+      </section>
+      <hr />
+
+      <section>
+        <h2>4. Radio — Favorite Fruit</h2>
+        <FavoriteFruit />
+      </section>
+      <hr />
+
+      <section>
+        <h2>5. JFS — Student Form (Text + 2 Radio Groups + Checkbox, Pattern B)</h2>
+        <StudentFormRadio />
       </section>
     </div>
   );
