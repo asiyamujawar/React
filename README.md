@@ -27,7 +27,6 @@
 ## 🔭 Project Overview
 
 > The curriculum follows a strict **Concept → Implementation → Mini Task**
-> sequence, producing **60+ runnable React examples** across Day 1–5.
 > All examples are ready to integrate with a **Spring Boot + MySQL** backend via a documented REST API.
 
 ```mermaid
